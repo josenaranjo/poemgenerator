@@ -11,6 +11,12 @@ import com.appia.poemgenerator.rule.Reference;
 import com.appia.poemgenerator.rule.RuleNode;
 import com.appia.poemgenerator.util.FileUtil;
 
+/**
+ * This is the principal class, will obtain
+ * the input from the user and generate the poem.
+ * @author josel
+ *
+ */
 public class PoemGenerator {
 
 	private static final Logger logger = Logger.getLogger(PoemGenerator.class);
