@@ -7,7 +7,7 @@ package com.appia.poemgenerator.rule;
  *
  */
 public enum KeywordType {
-	END(""), LINEBREAK("\\\\n");
+	END(""), LINEBREAK(System.getProperty("line.separator"));
 	
 	private String keyword;
 	

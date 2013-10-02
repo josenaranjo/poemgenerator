@@ -55,6 +55,14 @@ public class Parser {
 		return nodes;
 	}
 
+	/**
+	 * This method will return a list of rules separated by spaces which means
+	 * an (AND) relationship and each of these could be separated by pipelines which means
+	 * and (OR) relation.
+	 * 
+	 * @param line to be parsed
+	 * @return a list of rules 
+	 */
 	private List<AbstractRule> getRuleList(String line) {
 		List<AbstractRule> ruleAndChildren = new ArrayList<>();
 		for(String nodes : line.split(REGEX_SPACE)) {

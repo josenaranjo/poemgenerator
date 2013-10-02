@@ -20,6 +20,9 @@ import com.appia.poemgenerator.util.FileUtil;
 public class PoemGenerator {
 
 	private static final Logger logger = Logger.getLogger(PoemGenerator.class);
+
+	private static final String ATTRIBUTE_POEM = "poem";
+	
 	private final String grammaticalRulesPath;
 	private List<String> lines;
 	private Map<String, List<AbstractRule>> nodes;
@@ -31,7 +34,7 @@ public class PoemGenerator {
 	}
 
 	public void generatePoem() {
-		System.out.println(traverseRules(nodes.get("poem")));
+		System.out.println(traverseRules(nodes.get(ATTRIBUTE_POEM)));
 	}
 
 	private String traverseRules(List<AbstractRule> list) {
@@ -63,9 +66,12 @@ public class PoemGenerator {
 	public static void main(String[] args) {
 		BasicConfigurator.configure();
 		logger.info("Entering application.");
-		String path = "/Users/josel/Documents/workspace/poemgenerator/rules.txt";
 		
-		new PoemGenerator(path).generatePoem();
+		if(args.length > 0 && args[0] != null && !"".equals(args[0])) {
+			new PoemGenerator(args[0]).generatePoem();
+		} else {
+			System.out.println("Please include the path to the rules file.");
+		}
 		
 		logger.info("Exiting application.");
 		System.exit(0);

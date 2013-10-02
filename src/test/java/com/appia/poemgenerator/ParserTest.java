@@ -11,10 +11,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.appia.poemgenerator.rule.AbstractRule;
+
 public class ParserTest {
 
 	private Parser parser;
 	private List<String> lines = new ArrayList<>();
+	private String testLine = "<NOUN>|<PREPOSITION>|<PRONOUN> $LINEBREAK";
 
 	@Before
 	public void setUp() throws Exception {
@@ -30,16 +33,16 @@ public class ParserTest {
 
 	@Test
 	public void testGetRules() {
-		fail("Not yet implemented");
+		Assert.assertEquals(parser.getRules().size(), 5);
 	}
 
-	@Test
+	@SuppressWarnings("unchecked")
+  @Test
 	public void testGetKeySuccessful() throws IllegalAccessException, IllegalArgumentException,
 	    InvocationTargetException, NoSuchMethodException, SecurityException {
-		Method method = Parser.class.getDeclaredMethod("getKey", String.class);
+		Method method = Parser.class.getDeclaredMethod("getRuleList", String.class);
 		method.setAccessible(true);
-		Assert.assertEquals("POEM", method.invoke(parser, lines.get(0)));
-		Assert.assertEquals("VERB", method.invoke(parser, lines.get(4)));
+		Assert.assertEquals(2, ((List<AbstractRule>) method.invoke(parser, testLine)).size());
 	}
 
 }
